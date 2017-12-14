@@ -12,8 +12,8 @@ public class ExecutorShutDownLearn {
         ExecutorShutDownLearn executorShutDownLearn =new ExecutorShutDownLearn();
         //executorShutDownLearn.learnShutDwon();
         //executorShutDownLearn.leaenShutDownNow();
-
-        executorShutDownLearn.learnDemo();
+        //executorShutDownLearn.learnDemo();
+        executorShutDownLearn.learnShutDwon_1();
     }
 
 
@@ -158,7 +158,6 @@ public class ExecutorShutDownLearn {
      * 而且可以 返回异常信息
      *
      * 这里看到shutdown并不阻塞 只是一个通知作用
-     * 当然如果不用shutdown 就和 new Thread 没啥区别线程数一直增加而不会重用
      *
      *
      */
@@ -169,6 +168,17 @@ public class ExecutorShutDownLearn {
         }
         executor.shutdown();
         System.out.println("shutdown");
+    }
+
+
+    /**
+     * 这里 就很明显 如果没有调用shutdown java进程就不会结束
+     */
+    public void learnShutDwon_1(){
+        ExecutorService executor = Executors.newFixedThreadPool(4);
+        for(int i=0;i<100000;i++){
+            executor.submit(new MyRunnable_1(i));
+        }
     }
 
     public void leaenShutDownNow(){
@@ -192,11 +202,28 @@ public class ExecutorShutDownLearn {
         public void run() {
             try {
                 System.out.println(this.id+"线程开始休眠");
-                if(id>5){
-                    Thread.sleep(2000l);
-                }
+                Thread.sleep(2000l);
                 System.out.println(this.id+"线程开始完成");
             } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    class MyRunnable_1 implements Runnable{
+
+        private int id ;
+        MyRunnable_1(int id){
+            this.id = id;
+        }
+
+
+        @Override
+        public void run() {
+            try {
+                System.out.println(this.id+"======thread start!!!!");
+                Thread.sleep(1l);
+            } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
