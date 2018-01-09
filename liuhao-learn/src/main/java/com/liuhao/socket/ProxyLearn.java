@@ -19,39 +19,37 @@ public class ProxyLearn {
 
     public static void main(String[] args) throws IOException, InterruptedException {
         //构建一个代理地址
-        SocketAddress proxyAddress = new InetSocketAddress(PROXY_HOST,PROXY_PORT);
+        SocketAddress proxyAddress = new InetSocketAddress(PROXY_HOST, PROXY_PORT);
         //构建代理
-        Proxy proxy = new Proxy(Proxy.Type.HTTP,proxyAddress);
+        Proxy proxy = new Proxy(Proxy.Type.HTTP, proxyAddress);
         //通过代理对象构建连接对象
-        Socket socket = new Socket();
-        String host = "www.oschina.net";
-        int port = 80;
+        try (Socket socket = new Socket();) {
+            String host = "www.oschina.net";
+            int port = 80;
+            //构建一个 远程地址 对象
+            SocketAddress remote = new InetSocketAddress(host, port);
+            socket.connect(remote, 3000);
+            socket.setSoTimeout(3000);
 
-        //构建一个 远程地址 对象
-        SocketAddress remote = new InetSocketAddress(host,port);
-        socket.connect(remote,3000);
+            try (BufferedReader rd = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                 OutputStreamWriter osw = new OutputStreamWriter(socket.getOutputStream(), "utf-8");) {
+                osw.write("GET " + "/" + " HTTP/1.1\r\n");
+                osw.write("Host: " + host + " \r\n");
+                //http协议必须在报文头后面再加一个换行，通知服务器发送完成，不然服务器会一直等待
+                osw.write("\r\n");
+                osw.flush();
+                //socket.shutdownOutput();
+                System.out.println("*******开始响应********");
 
-        InputStream inputStream = socket.getInputStream();
-        BufferedInputStream bufferedReader =  new BufferedInputStream(inputStream);
-        OutputStreamWriter osw = new OutputStreamWriter(socket.getOutputStream(),"utf-8");
-        osw. write("GET " + "/" + " HTTP/1.1\r\n");
-        osw.write("Host: " + host + " \r\n");
-        //http协议必须在报文头后面再加一个换行，通知服务器发送完成，不然服务器会一直等待
-        osw.write("\r\n");
-        osw.flush();
-        //socket.shutdownOutput();
-        System.out.println("*******开始响应********");
-
-        byte[] buffer = new byte[1024];
-        int len = -1;
-        while ((len = bufferedReader.read(buffer)) != -1) {
-            System.out.println("***********"+len+"***********");
-            System.out.print(new String(buffer,"utf-8"));
+                String line;
+                while ((line = rd.readLine()) != null) {
+                    System.out.println(line);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }catch (Exception e){
+            e.printStackTrace();
         }
-
-        osw.close();
-        bufferedReader.close();
-        socket.close();
-
     }
 }
