@@ -10,10 +10,13 @@ import java.net.Socket;
  */
 public class DayTimeClientLearn {
 
-    final static String host = "time.nist.gov";
+    final static String HOST = "time.nist.gov";
+    final static int PORT = 13;
+    final static String LOCALHOST = "localhost";
+    final static int LOCALHOSTPORT = 1137;
 
     public static void main(String[] args) throws IOException {
-        try(Socket socket = new Socket(host,13)) {
+        try(Socket socket = new Socket(LOCALHOST,LOCALHOSTPORT)) {
             InputStream inputStream = socket.getInputStream();
             InputStreamReader inputStreamReader = new InputStreamReader(inputStream,"ASCII");
             StringBuilder sb  = new StringBuilder();
