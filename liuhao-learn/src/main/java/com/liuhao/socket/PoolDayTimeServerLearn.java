@@ -5,14 +5,17 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.Collections;
 import java.util.Date;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.ThreadPoolExecutor;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class PoolDayTimeServerLearn {
+
+    private final static Logger errorLogger = Logger.getLogger("error");
+    private final static Logger auditLogger = Logger.getLogger("request");
 
     final static int  PORT = 1314;
 
@@ -25,6 +28,7 @@ public class PoolDayTimeServerLearn {
             }
 
         } catch (IOException e) {
+            errorLogger.log(Level.SEVERE ,"Could not start server"+e);
             e.printStackTrace();
         }
     }
@@ -40,9 +44,11 @@ public class PoolDayTimeServerLearn {
         }
         @Override
         public Void call() throws Exception {
+            String now = new Date().toString();
+            auditLogger.info(now +" "+connection.getInetAddress().getHostAddress());
             try (OutputStream outputStream = connection.getOutputStream();
                  OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream)){
-                String now = new Date().toString();
+
                 outputStreamWriter.write(now+"\r\n");
                 outputStreamWriter.flush();
             }finally {
