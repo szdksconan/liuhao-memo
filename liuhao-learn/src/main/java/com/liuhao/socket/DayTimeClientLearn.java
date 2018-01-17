@@ -13,7 +13,7 @@ public class DayTimeClientLearn {
     final static String HOST = "time.nist.gov";
     final static int PORT = 13;
     final static String LOCALHOST = "localhost";
-    final static int LOCALHOSTPORT = 1137;
+    final static int LOCALHOSTPORT = 1314;
 
     public static void main(String[] args) throws IOException {
         try(Socket socket = new Socket(LOCALHOST,LOCALHOSTPORT)) {
