@@ -99,6 +99,12 @@ public class LambdasLearn {
         System.out.printf("Name: %s %s; Salary: $%,d.", salaryMinPerson.getFirstName(), salaryMinPerson.getLastName(), salaryMinPerson.getSalary());
 
 
+
+        System.out.println("将 PHP programmers 的 first name 拼接成字符串:");
+        String phpProgrammerString = phpProgrammers.stream()
+                .map(Person::getFirstName)
+                .collect(Collectors.joining(";"));
+        System.out.println("phpProgrammerString: "+phpProgrammerString);
     }
 
     public static void main(String[] args) {
