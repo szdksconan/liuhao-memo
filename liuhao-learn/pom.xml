@@ -11,4 +11,12 @@
 
     <artifactId>liuhao-learn</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>2.9.0</version>
+        </dependency>
+    </dependencies>
+
 </project>
