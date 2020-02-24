@@ -8,28 +8,30 @@ public class QuickSort {
     }
 
     public void quickSortT (int[] a,int s,int e){
-        if(s>=e-1) return;
+        if(s>=e) return;
         int valueSign = s+((e-s)/2);
         int value = a[valueSign];//随便取个中间位置的值
         int i=s;
         int j=s;
         for(;i<e;i++){
             if(a[i]<value){
+                if(valueSign == j){//重新设置中间点的位置
+                    valueSign = i;
+                }
                 int b = a[j];
                 a[j++] = a[i];
                 a[i] = b;
-
             }
         }
         if(j<=valueSign) {
             int c = a[j];
             a[j] = value;
             a[valueSign] = c;
-        }else{
+        }/*else{
             int c = a[j];
             a[j] = a[i-1];
             a[i-1] =  c;
-        }
+        }*/
 
         quickSortT(a,s,j);
         quickSortT(a,j+1,e);
