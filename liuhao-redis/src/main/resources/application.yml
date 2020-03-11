@@ -3,9 +3,13 @@ spring:
     host: 127.0.0.1
     port: 6379
     database: 0
-    timeout: 2s  # 数据库连接超时时间，2.0 中该参数的类型为Duration，这里在配置的时候需要指明单位
+    timeout: 2000  # 数据库连接超时时间，2.0 中该参数的类型为Duration，这里在配置的时候需要指明单位 如果是手动配置则不加单位
     # 连接池配置，2.0中直接使用jedis或者lettuce配置连接池
     password: 123456
+    order:
+      database: 1
+    customer:
+      database: 2
     lettuce:
           pool:
             # 最大空闲连接数 默认8
@@ -14,4 +18,13 @@ spring:
             min-idle: 0
              # 最大活跃链接数 默认8
             max-active: 8
-          shutdown-timeout: 100ms
+            max-wait: -1
+          shutdown-timeout: 1000 #单位 ms
+
+
+# springboot 2.1.6 引入actuator需要声明导出的接口，否则不会像早期版本那样自动映射出去
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

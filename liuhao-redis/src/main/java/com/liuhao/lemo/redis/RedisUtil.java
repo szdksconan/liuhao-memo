@@ -5,6 +5,7 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
@@ -13,6 +14,7 @@ import org.springframework.util.CollectionUtils;
 public final class RedisUtil {
 
     @Autowired
+    @Qualifier("defRedisTemplate")
     private RedisTemplate<String, Object> redisTemplate;
 
     // =============================common============================
