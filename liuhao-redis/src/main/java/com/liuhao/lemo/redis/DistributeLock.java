@@ -15,8 +15,12 @@ public class DistributeLock {
     @Autowired
     RedisUtil redisUtil;
 
-    List<String> keys = new ArrayList();
-    List<String> value = new ArrayList();
+
+    private int RETRY_COUNT = 3;
+    private long RETRY_SLEEP_MILL = 500l;
+
+    List<String> keys = new ArrayList();//测试数据
+    List<String> value = new ArrayList();//测试数据
     StringBuilder  delLua = new StringBuilder();
 
     private DistributeLock(){
@@ -36,21 +40,31 @@ public class DistributeLock {
      *
      */
     public boolean tryLock(String lockKey,String lockValue) throws InterruptedException {//value可以加入业务参数:比如加锁userId以便之后删除
-        int tryCount = 2;
         boolean getLock = redisUtil.getRedisTemplate()
                 .getRequiredConnectionFactory()
                 .getConnection()
                 .set(lockKey.getBytes(), lockValue.getBytes(), Expiration.seconds(10), RedisStringCommands.SetOption.ifAbsent());
+        int tryCount = RETRY_COUNT;
         if(!getLock){
             //重试机制 、或业务处理
-            if(tryCount--==0){
+            for(;tryCount>0;tryCount--){
+                 getLock = redisUtil.getRedisTemplate()
+                        .getRequiredConnectionFactory()
+                        .getConnection()
+                        .set(lockKey.getBytes(), lockValue.getBytes(), Expiration.seconds(10), RedisStringCommands.SetOption.ifAbsent());
+                 if(getLock){
+                     System.out.println("此时key为 " + lockKey + "通过重试获取锁成功");
+                     break;
+                 }
+                 Thread.sleep(RETRY_SLEEP_MILL);
+            }
+            if(!getLock){
+                System.out.println("此时key为 " + lockKey + "通过重试获取锁失败 ");
                 return false;
             }
-            Thread.sleep(50);
-            tryLock(lockKey,lockValue);
         }
         if(tryCount<2){
-            System.out.println("此时key为 "+lockKey+" 通过重试获取到锁 ");
+
         }else {
             System.out.println("此时key为 " + lockKey + "首次获取到锁 "+redisUtil.get(lockKey));
         }
