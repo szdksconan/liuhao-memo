@@ -1,0 +1,11 @@
+# springboot 2.1.6 引入actuator需要声明导出的接口，否则不会像早期版本那样自动映射出去
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+
+zk:
+  url: 127.0.0.1:2181
+

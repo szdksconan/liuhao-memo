@@ -19,6 +19,7 @@
         <module>liuhao-utils</module>
         <module>liuhao-learn</module>
         <module>liuhao-redis</module>
+        <module>liuhao-zookeeper-kafka</module>
     </modules>
 
 
