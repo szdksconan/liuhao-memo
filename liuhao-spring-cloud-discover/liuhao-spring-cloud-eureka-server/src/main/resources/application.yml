@@ -1,0 +1,15 @@
+server:
+  port: 8761
+
+
+##关闭集群配置
+eureka:
+  client:
+      register-with-eureka: false
+      fetch-registry: false
+
+spring:
+  freemarker:
+    prefer-file-system-access: false
+  application:
+    name: liuhao-spring-boot-eureka-client
