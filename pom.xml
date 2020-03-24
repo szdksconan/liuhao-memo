@@ -12,7 +12,6 @@
     </parent>
 
 
-
     <groupId>org.liuhao.memo</groupId>
     <artifactId>liuhao-memo</artifactId>
     <packaging>pom</packaging>
@@ -25,6 +24,8 @@
         <module>liuhao-zookeeper-kafka</module>
         <module>liuhao-spring-cloud-discover</module>
         <module>liuhao-transaction</module>
+        <module>liuhao-springboot-nacos-provider</module>
+        <module>liuhao-springboot-nacos-consumer</module>
     </modules>
 
     <dependencyManagement>
@@ -36,6 +37,13 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${spring-cloud-ali.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -43,7 +51,8 @@
     <properties>
         <java.version>1.8</java.version>
         <revision>3.0.0.BUILD</revision>
-        <spring-cloud.version>Greenwich.SR1</spring-cloud.version>
+        <spring-cloud.version>Greenwich.SR3</spring-cloud.version>
+        <spring-cloud-ali.version>2.1.1.RELEASE</spring-cloud-ali.version>
     </properties>
 
     <build>
