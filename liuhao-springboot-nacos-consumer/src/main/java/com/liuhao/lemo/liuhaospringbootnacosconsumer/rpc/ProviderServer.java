@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @RefreshScope
 public interface ProviderServer{
 
-    @GetMapping("hello")
-    public String hello();
+    @GetMapping("providerHello")
+    public String providerHello();
 
 }

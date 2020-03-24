@@ -1,0 +1,20 @@
+server:
+  port: 8888
+spring:
+  application:
+    name: liuhao-geteway
+  cloud:
+    gateway:
+      routes:
+       - id: services-consumer
+         uri: http://127.0.0.1:8080
+         predicates:
+          - Path=/consumer/consumerHello
+         filters:
+          - RewritePath=/consumer(?<segment>/?.*), $\{segment}
+       - id: services-provider
+         uri: http://127.0.0.1:8070
+         predicates:
+          - Path=/provider/providerHello
+         filters:
+          - RewritePath=/provider(?<segment>/?.*), $\{segment}

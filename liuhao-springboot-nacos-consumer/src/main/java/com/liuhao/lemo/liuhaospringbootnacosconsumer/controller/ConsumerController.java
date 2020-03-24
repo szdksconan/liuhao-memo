@@ -18,9 +18,9 @@ public class ConsumerController {
     @Autowired
     private ProviderServer providerServer;
 
-    @GetMapping("hello")
-    public String hello(){
-        return redisUrl+" "+ name +" "+  providerServer.hello();
+    @GetMapping("consumerHello")
+    public String consumerHello(){
+        return redisUrl+" "+ name +" "+  providerServer.providerHello();
     }
 
 

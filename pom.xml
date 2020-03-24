@@ -26,6 +26,7 @@
         <module>liuhao-transaction</module>
         <module>liuhao-springboot-nacos-provider</module>
         <module>liuhao-springboot-nacos-consumer</module>
+        <module>liuhao-springboot-geteway</module>
     </modules>
 
     <dependencyManagement>

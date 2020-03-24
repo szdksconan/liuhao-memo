@@ -10,8 +10,8 @@ public class ProviderController {
     @Value("${name}")
     private String name;
 
-    @GetMapping("hello")
-    public String hello(){
+    @GetMapping("providerHello")
+    public String providerHello(){
         return name+ " provider hello";
     }
 
