@@ -17,7 +17,7 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>liuhao-utils</module>
+       <!-- <module>liuhao-utils</module>
         <module>liuhao-autoConfig</module>
         <module>liuhao-learn</module>
         <module>liuhao-redis</module>
@@ -26,7 +26,8 @@
         <module>liuhao-transaction</module>
         <module>liuhao-springboot-nacos-provider</module>
         <module>liuhao-springboot-nacos-consumer</module>
-        <module>liuhao-springboot-geteway</module>
+        <module>liuhao-springboot-geteway</module>-->
+        <module>liuhao-mybaties-plus-demo</module>
     </modules>
 
     <dependencyManagement>
