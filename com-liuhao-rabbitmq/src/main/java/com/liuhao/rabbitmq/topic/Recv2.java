@@ -18,7 +18,7 @@ public class Recv2 {
         // 获取通道
         Channel channel = connection.createChannel();
         // 声明队列
-        channel.queueDeclare(QUEUE_NAME, false, false, false, null);
+        channel.queueDeclare(QUEUE_NAME, true, false, false, null);
         
         // 绑定队列到交换机，同时指定需要订阅的routing key。订阅 insert、update、delete
         channel.queueBind(QUEUE_NAME, EXCHANGE_NAME, "item.insert");
