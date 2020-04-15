@@ -29,6 +29,7 @@
         <module>liuhao-springboot-geteway</module>-->
         <module>liuhao-mybaties-plus-demo</module>
         <module>liuhao-elasticsearch</module>
+        <module>liuhao-rabbitmq</module>
     </modules>
 
     <dependencyManagement>
