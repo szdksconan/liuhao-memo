@@ -19,7 +19,6 @@
     <modules>
        <!-- <module>liuhao-utils</module>
         <module>liuhao-autoConfig</module>
-        <module>liuhao-learn</module>
         <module>liuhao-redis</module>
         <module>liuhao-zookeeper-kafka</module>
         <module>liuhao-spring-cloud-discover</module>
@@ -30,6 +29,7 @@
         <module>liuhao-mybaties-plus-demo</module>
         <module>liuhao-elasticsearch</module>
         <module>liuhao-rabbitmq</module>
+        <module>liuhao-learn</module>
     </modules>
 
     <dependencyManagement>
