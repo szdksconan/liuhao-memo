@@ -17,7 +17,7 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
-       <!-- <module>liuhao-utils</module>
+      <!--  <module>liuhao-utils</module>
         <module>liuhao-autoConfig</module>
         <module>liuhao-redis</module>
         <module>liuhao-zookeeper-kafka</module>
@@ -25,11 +25,12 @@
         <module>liuhao-transaction</module>
         <module>liuhao-springboot-nacos-provider</module>
         <module>liuhao-springboot-nacos-consumer</module>
-        <module>liuhao-springboot-geteway</module>-->
+        <module>liuhao-springboot-geteway</module>
         <module>liuhao-mybaties-plus-demo</module>
         <module>liuhao-elasticsearch</module>
         <module>liuhao-rabbitmq</module>
-        <module>liuhao-learn</module>
+        <module>liuhao-learn</module>-->
+        <module>liuhao-memo-tansaction-mq</module>
     </modules>
 
     <dependencyManagement>

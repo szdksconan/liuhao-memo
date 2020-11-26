@@ -1,4 +1,4 @@
-package liuhao.lemo.getway.com;
+package com.liuhao.lemo.getway.com;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
