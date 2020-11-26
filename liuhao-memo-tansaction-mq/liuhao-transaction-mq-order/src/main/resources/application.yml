@@ -3,7 +3,7 @@ spring:
     name: mybaties-plus
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/db_account?serverTimezone=UTC&useUnicode=true&characterEncoding=utf8&useSSL=false
+    url: jdbc:mysql://127.0.0.1:3306/db_transaction_test?serverTimezone=UTC&useUnicode=true&characterEncoding=utf8&useSSL=false
     username: liuhao
     password: liuhao
 logging:

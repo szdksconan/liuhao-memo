@@ -1,4 +1,4 @@
-/*
+
 package com.liuhao.memo.mq.service;
 
 import com.liuhao.memo.mq.po.OrderEntity;
@@ -15,8 +15,6 @@ import java.util.*;
 @Service
 public class OrderService {
 
-    @Autowired
-    OrderMapper orderMapper;
 
     @Autowired
     private StringRedisTemplate redisTemplate;
@@ -49,4 +47,4 @@ public class OrderService {
 
 
 }
-*/
+
